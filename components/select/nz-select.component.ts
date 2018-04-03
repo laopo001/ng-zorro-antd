@@ -201,6 +201,7 @@ export class NzSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   @Output() nzOnSearch = new EventEmitter<string>();
   @Output() nzScrollToBottom = new EventEmitter<void>();
   @Output() nzOpenChange = new EventEmitter<boolean>();
+  @Output() optionsClick = new EventEmitter<boolean>();
   @Input() nzSize = 'default';
   @Input() nzServerSearch = false;
   @Input() nzMode: 'default' | 'multiple' | 'tags' = 'default';
@@ -361,6 +362,7 @@ export class NzSelectComponent implements ControlValueAccessor, OnInit, AfterVie
   }
 
   onClickOptionFromOptionContainer(): void {
+    this.optionsClick.emit();
     if (this.isSingleMode) {
       this.closeDropDown();
     } else if (this.nzMode === 'tags') {
