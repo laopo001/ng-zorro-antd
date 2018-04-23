@@ -14,6 +14,7 @@ import { NzCarouselModule } from './carousel/nz-carousel.module';
 import { NzCascaderModule } from './cascader/nz-cascader.module';
 import { NzCheckboxModule } from './checkbox/nz-checkbox.module';
 import { NzCollapseModule } from './collapse/nz-collapse.module';
+import { NzDatePickerModule } from './datepicker/nz-datepicker.module';
 import { NzDividerModule } from './divider/nz-divider.module';
 import { NzDropDownModule } from './dropdown/nz-dropdown.module';
 import { NzDropdownService } from './dropdown/nz-dropdown.service';
@@ -44,6 +45,7 @@ import { NzSwitchModule } from './switch/nz-switch.module';
 import { NzTableModule } from './table/nz-table.module';
 import { NzTabsModule } from './tabs/nz-tabs.module';
 import { NzTagModule } from './tag/nz-tag.module';
+import { NzTimePickerModule } from './time-picker/nz-timepicker.module';
 import { NzTimelineModule } from './timeline/nz-timeline.module';
 import { NzToolTipModule } from './tooltip/nz-tooltip.module';
 import { NzTransferModule } from './transfer/nz-transfer.module';
@@ -146,14 +148,16 @@ export * from './tree';
     NzModalModule,
     NzBackTopModule,
     NzCascaderModule,
-    NzTreeModule
+    NzTreeModule,
+    NzDatePickerModule,
+    NzTimePickerModule
   ]
 })
 export class NgZorroAntdModule {
 
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule : NgZorroAntdModule,
+      ngModule: NgZorroAntdModule,
       providers: [
         // Services
         NzNotificationService,

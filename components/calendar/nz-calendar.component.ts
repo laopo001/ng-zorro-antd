@@ -20,7 +20,7 @@ import { NzI18nService as I18n } from '../i18n/nz-i18n.service';
 import { NzDateCellDirective as DateCell, NzDateFullCellDirective as DateFullCell, NzMonthCellDirective as MonthCell, NzMonthFullCellDirective as MonthFullCell } from './nz-calendar-cells';
 
 @Component({
-  selector: 'nz-calendar',
+  selector: 'nz-calendar7',
   templateUrl: './nz-calendar.component.html',
   providers: [
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => NzCalendarComponent), multi: true }

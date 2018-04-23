@@ -213,17 +213,17 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R> impleme
   }
 
   private onClickOkCancel(type: 'ok' | 'cancel'): void {
-    const trigger = { 'ok': this.nzOnOk, 'cancel': this.nzOnCancel }[ type ];
-    const loadingKey = { 'ok': 'nzOkLoading', 'cancel': 'nzCancelLoading' }[ type ];
+    const trigger = { 'ok': this.nzOnOk, 'cancel': this.nzOnCancel }[type];
+    const loadingKey = { 'ok': 'nzOkLoading', 'cancel': 'nzCancelLoading' }[type];
     if (trigger instanceof EventEmitter) {
       trigger.emit(this.getContentComponent());
     } else if (typeof trigger === 'function') {
       const result = trigger(this.getContentComponent());
       const caseClose = (doClose: boolean | void | {}) => (doClose !== false) && this.close(); // Users can return "false" to prevent closing by default
       if (isPromise(result)) {
-        this[ loadingKey ] = true;
+        this[loadingKey] = true;
         const handleThen = (doClose) => {
-          this[ loadingKey ] = false;
+          this[loadingKey] = false;
           caseClose(doClose);
         };
         (result as Promise<void>).then(handleThen).catch(handleThen);
@@ -265,7 +265,7 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R> impleme
 
   // Lookup a button's property, if the prop is a function, call & then return the result, otherwise, return itself.
   private getButtonCallableProp(options: ModalButtonOptions<T>, prop: string): {} {
-    const value = options[ prop ];
+    const value = options[prop];
     const args = [];
     if (this.contentComponentRef) {
       args.push(this.contentComponentRef.instance);
@@ -297,12 +297,12 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R> impleme
     this.animationState = state;
     if (state) {
       this.maskAnimationClassMap = {
-        [ `fade-${state}` ]       : true,
-        [ `fade-${state}-active` ]: true
+        [`fade-${state}`]: true,
+        [`fade-${state}-active`]: true
       };
       this.modalAnimationClassMap = {
-        [ `zoom-${state}` ]       : true,
-        [ `zoom-${state}-active` ]: true
+        [`zoom-${state}`]: true,
+        [`zoom-${state}-active`]: true
       };
     } else {
       this.maskAnimationClassMap = this.modalAnimationClassMap = null;
@@ -325,12 +325,12 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R> impleme
     return buttons.map((button) => {
       const mixedButton = {
         ...{
-          type       : 'default',
-          size       : 'default',
+          type: 'default',
+          size: 'default',
           autoLoading: true,
-          show       : true,
-          loading    : false,
-          disabled   : false
+          show: true,
+          loading: false,
+          disabled: false
         },
         ...button
       };
@@ -348,7 +348,7 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R> impleme
   private createDynamicComponent(component: Type<T>): void {
     const factory = this.cfr.resolveComponentFactory(component);
     const childInjector = Injector.create({
-      providers: [ { provide : NzModalRef, useValue: this } ],
+      providers: [{ provide: NzModalRef, useValue: this }],
       parent: this.viewContainer.parentInjector
     });
     this.contentComponentRef = factory.create(childInjector);
@@ -375,12 +375,20 @@ export class NzModalComponent<T = any, R = any> extends NzModalRef<T, R> impleme
     const openModals = this.modalControl.openModals;
 
     if (openModals.length) {
-      this.renderer.setStyle(this.document.body, 'padding-right', `${measureScrollbar()}px`);
-      this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
+
+      if (document.body.scrollHeight !== document.body.offsetHeight) {
+        this.renderer.setStyle(this.document.body, 'padding-right', `${measureScrollbar()}px`);
+        this.renderer.setStyle(this.document.body, 'overflow', 'hidden');
+      }
+
     } else {
       this.renderer.removeStyle(this.document.body, 'padding-right');
       this.renderer.removeStyle(this.document.body, 'overflow');
     }
+
+    // if(document.body.scrollHeight===document.body.offsetHeight){
+
+    // }
   }
 }
 

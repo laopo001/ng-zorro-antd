@@ -290,6 +290,7 @@ export class NzTableComponent implements OnInit, AfterViewInit {
   @Input()
   /* tslint:disable-next-line:no-any */
   set nzData(data: any[]) {
+    // console.log(data);
     if (Array.isArray(data)) {
       this.rawData = data;
       this.parseInputData();

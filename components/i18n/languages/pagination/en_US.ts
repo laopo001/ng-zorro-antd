@@ -1,6 +1,6 @@
 export default {
   // Options.jsx
-  items_per_page: '/ page',
+  items_per_page: '/ 页',
   jump_to: '转到',
   jump_to_confirm: 'confirm',
   page: '',
